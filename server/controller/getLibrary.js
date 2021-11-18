@@ -1,13 +1,14 @@
 const axios = require('axios');
 const Library = require('../model/librarySchema.js');
 
-const access_token = "BQD_YyK4z2HmT0Hguwai7K2Z-EGltQRq6vPuYlhFB6wia7G0lM29gXeDYBz20u2cPXwmCCHZejg5snBlgarKaL1URAudPcsKA4UsBbCnXkOYXsVUoxU4IYUs-ndrrtHHDsbggKM68VkKr35yVWh8TtHNxGIwf-AyTf2-ew"; // static token before full authorization module is complete
+const access_token = "BQAgbiisEOlIjwFpJQUUzT7est9o-9JdT8pR4YsplPlBW94FrkbIGwHMlrYIooZ2zrQsduncPRFfDszSjdJPN9tgx7Nhe_uJzp3FqSlo_TBaektDFlHb30ZCi6EwlPCVdcBFMM0ObEbe1_HHxR-mMrLoLXEVuL8"; // static token before full authorization module is complete
 
 // Fetch existing library from db
 
 exports.getLibrary = async (req, res) => {
   try {
-    const artistFetch = await Library.find({username: "mavienajera"});
+    // TODO: #6 rename variable artistFetch to be more self-explanatory
+    const artistFetch = await Library.find({username: "natpil"});
     res.send(artistFetch);
   } catch (error) {
     console.error(error);
@@ -20,6 +21,7 @@ exports.getLibrary = async (req, res) => {
 exports.importLibrary = async (req, res) => {
   try {
     // fetch followed artists for the specific account
+    // TODO: #7 combine this into one step
     const artistFetch = await fetchArtists();
     const followedArtists = artistFetch.data.artists.items;
     // add tags array to each artist pre-populating some tags based on the genre
@@ -38,6 +40,8 @@ exports.importLibrary = async (req, res) => {
 
 // Spotify API calls
 
+// TODO: #8 combine fetchArtists and fetchProfile into one function
+// TODO: #9 rename to fetchArtistsFollowing
 function fetchArtists(req, res) {
   const response = axios('https://api.spotify.com/v1/me/following?type=artist&limit=50', {
       method: 'get',
@@ -60,6 +64,7 @@ function fetchProfile (req, res) {
 
 // Helper functions
 
+// TODO: #10 review helper function and possibly remove nested for loops
 function populateTags(artistList) {
   // All existing tags on account
   const tags = [];

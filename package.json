@@ -15,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GregaE/soundAssembly.git"
+    "url": "git+https://github.com/pillllo/soundAssembly.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/GregaE/soundAssembly/issues"
+    "url": "https://github.com/pillllo/soundAssembly/issues"
   },
   "homepage": "https://github.com/GregaE/soundAssembly#readme",
   "config": {

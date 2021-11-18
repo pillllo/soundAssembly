@@ -13,12 +13,13 @@ exports.getFollowedArtists = async (req, res) => {
   }
 }
 
-// Fetches queried artist from db for a specific user
+// Fetches a queried artist from db for a specific user
 
 exports.getArtist = async (req, res) => {
   try {
     const id = req.params.artistId;
-    const artist = await Library.findOne({username: 'mavienajera'}, {artists: 1, artists: {$elemMatch: {id: id}}});
+    const artist = await Library.findOne({username: 'natpil'}, {artists: 1, artists: {$elemMatch: {id: id}}});
+    // TODO: #5 refactor function so that artist = artist, not an array of artists
     res.send(artist.artists[0]);
   } catch (error) {
     console.error(error);

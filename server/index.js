@@ -1,11 +1,13 @@
 const Express = require('express');
 const router = require('./router');
 const cors = require('cors');
+
+require('dotenv').config();
 const db = require('./model/dbaccess.js');
 const corsConfig = {origin: ['http://localhost:3000']};
 
 const app = Express();
-const PORT = 8889;
+const PORT = process.env.PORT;
 
 app
 	.use(cors(corsConfig))

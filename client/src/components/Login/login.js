@@ -5,7 +5,8 @@ require('dotenv').config();
 function Login() {
 
   const params = new URLSearchParams({
-    client_id: process.env.CLIENT_ID,
+    // client_id: process.env.CLIENT_ID,
+    client_id: '51a951a7c87244e589bb80479176c075',
     response_type: 'code',
     redirect_uri: 'http://localhost:3000/',
     scope: 'user-read-private%20user-read-private%20user-top-read%20user-follow-read%20user-follow-modify%20user-library-read',

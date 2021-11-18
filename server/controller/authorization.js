@@ -5,6 +5,7 @@ require('dotenv').config();
 const redirect_uri = 'http://localhost:3000/';
 
 exports.authorize = async (req, res) => {
+    // TODO: #14 remove cons logs
     console.log(req.body.code)
     const code = req.body.code;
     const spotifyApi = new SpotifyWebApi({
@@ -13,19 +14,19 @@ exports.authorize = async (req, res) => {
       redirect_uri: redirect_uri
     });
 
-    spotifyApi
-      .authorizationCodeGrant(code)
-      .then(data => {
-        res.json({
-          accessToken: data.body.access_token,
-          refreshToken: data.body.refresh_token,
-          expiresIn: data.body.expires_in,
-        })
-      })
-      .catch(err => {
-        console.log(err)
-        res.sendStatus(400)
-      })
+    // spotifyApi
+    //   .authorizationCodeGrant(code)
+    //   .then(data => {
+    //     res.json({
+    //       accessToken: data.body.access_token,
+    //       refreshToken: data.body.refresh_token,
+    //       expiresIn: data.body.expires_in,
+    //     })
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //     res.sendStatus(400)
+    //   })
 }
 
 exports.getToken = async (req, res) => {

@@ -21,6 +21,8 @@ function login (code) {
   })
 }
 
+// TODO: #17 use same way to declare functions in whole file
+
 // Import/refresh library via Spotify
 
 const importLibrary = () => {
@@ -45,6 +47,7 @@ const createTag = (tagName) => {
     headers: {
       "Content-Type": "application/json"
     },
+    // TODO: #18 rename name to tag in all API calls
     body: JSON.stringify({name: tagName})
   })
 }
@@ -75,7 +78,7 @@ const untagArtist = (artistId, tagName) => {
 
 // Requests directly to Spotify API
 
-const access_token = "BQD_YyK4z2HmT0Hguwai7K2Z-EGltQRq6vPuYlhFB6wia7G0lM29gXeDYBz20u2cPXwmCCHZejg5snBlgarKaL1URAudPcsKA4UsBbCnXkOYXsVUoxU4IYUs-ndrrtHHDsbggKM68VkKr35yVWh8TtHNxGIwf-AyTf2-ew";
+const access_token = "BQAgbiisEOlIjwFpJQUUzT7est9o-9JdT8pR4YsplPlBW94FrkbIGwHMlrYIooZ2zrQsduncPRFfDszSjdJPN9tgx7Nhe_uJzp3FqSlo_TBaektDFlHb30ZCi6EwlPCVdcBFMM0ObEbe1_HHxR-mMrLoLXEVuL8";
 
 async function getAlbums(artistId, req, res) {
   const response = await fetch(`https://api.spotify.com/v1/artists/${artistId}/albums`, {
