@@ -8,8 +8,7 @@
     "node-sass": "^6.0.1"
   },
   "devDependencies": {
-    "eslint": "^8.2.0",
-    "eslint-plugin-react": "^7.27.0"
+    "cz-conventional-changelog": "^3.3.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,5 +22,10 @@
   "bugs": {
     "url": "https://github.com/GregaE/soundAssembly/issues"
   },
-  "homepage": "https://github.com/GregaE/soundAssembly#readme"
+  "homepage": "https://github.com/GregaE/soundAssembly#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
