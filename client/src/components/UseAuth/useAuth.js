@@ -8,7 +8,9 @@ function useAuth(code) {
 
   useEffect(()=> {
     login(code)
-      .then(res => console.log(res))
+    // TODO: #22 remove cons log
+    .then(res => console.log(res))
+      // TODO: #21 remove dead code
       // .catch(() => {window.location = '/'})
   },[code])
 
