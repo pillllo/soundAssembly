@@ -1,4 +1,5 @@
 import TagList from './tagList';
+// TODO: #25 move assets to assets folder
 import logo from '../../logoWhite.png';
 
 function SideBar(props) {

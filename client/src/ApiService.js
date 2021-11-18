@@ -77,6 +77,7 @@ const untagArtist = (artistId, tagName) => {
 }
 
 // Requests directly to Spotify API
+// TODO: #19 move all Spotify API calls to server?
 
 const access_token = "BQAgbiisEOlIjwFpJQUUzT7est9o-9JdT8pR4YsplPlBW94FrkbIGwHMlrYIooZ2zrQsduncPRFfDszSjdJPN9tgx7Nhe_uJzp3FqSlo_TBaektDFlHb30ZCi6EwlPCVdcBFMM0ObEbe1_HHxR-mMrLoLXEVuL8";
 
