@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
+
+import AlbumList from '../AlbumList/AlbumList';
+import ArtistDetails from '../ArtistDetails/ArtistDetails';
+import ArtistTagList from '../ArtistTagList/ArtistTagList'
 import { getAlbums, getArtist } from '../../ApiService';
-import AlbumList from './albumList';
-import ArtistDetails from './artistDetails';
-import ArtistTagList from './artistTagList'
 
 function ArtistPage(props) {
 

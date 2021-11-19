@@ -1,8 +1,10 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+// NB the version of React Testing Library that ships with create-react-app
+// DOESN'T have the .keyboard() functionality, so we have to use fireEvent()
 import userEvent from '@testing-library/user-event';
 
 import TagList from './TagList';
-import { createTag } from '../../ApiService.js';
+// import { createTag } from '../../ApiService.js';
 
 describe('TagList', () => {
 
@@ -26,16 +28,20 @@ describe('TagList', () => {
   //   return [{ name: 'Punk' }]
   // });
 
-  jest.mock('../../ApiService.js', () => ({
-    createTag: () => ([{name: 'Punk'}])
-  }));
+  jest.mock('../../ApiService', () => {
+    return {
+      createTag: (tagName) => [
+        ...mockTags,
+        { name: tagName }]
+    }
+  });
 
   // beforeEach stuff goes here?
+  render(<TagList tags={mockTags} />)
 
   describe('rendering the tag list', () => {
 
     test('should render a sorted list of tags', () => {
-      render(<TagList tags={mockTags} />)
       const allTags = screen.getAllByTestId('taglist-tag');
       expect(allTags.length).toBe(4);
       expect(allTags[0]).toHaveTextContent('Country');
@@ -44,72 +50,35 @@ describe('TagList', () => {
 
   })
 
-  describe('adding tags', () => {
+  describe.only('adding tags', () => {
 
-    test.only('should call createTag with the right input', async () => {
+    test('should create a new tag', async () => {
 
-      const createTag = jest.fn();
-      const tag = { name: 'Punk' };
+      const punkGenre = 'Punk';
+      const tagInput = screen.getByTestId('taglist-input')
 
-      render(<TagList tags={mockTags} />)
+      // screen.debug() // <--- useful tip to see that DOM is rendering as you expect
+      userEvent.type(tagInput, punkGenre);
+      expect(screen.getByTestId('taglist-input')).toHaveValue(punkGenre);
+      fireEvent.keyUp(tagInput, { key: 'Enter', code: 'Enter', charCode: 13 })
+      // expect(screen.getByTestId('taglist-input')).toHaveTextContent('');
+      // screen.debug()
+      const result = await screen.findByText(punkGenre);
+      console.log(result);
+    });
 
-      const tagInput = screen.getByPlaceholderText('add tag...')
+    test('should not allow the creation of duplicate tags', () => {
 
-      userEvent.type(tagInput, 'Punk');
-      fireEvent.keyDown(tagInput, { key: 'Enter', code: 'Enter' })
-      console.log(`typeof createTag: ${typeof createTag}`)
+    })
 
-      // createTag.mockResolvedValue([
-      //   {
-      //     name: 'Teen Pop',
-      //     status: 'active',
-      //   },
-      //   {
-      //     name: 'Country',
-      //     status: 'active',
-      //   },
-      //   {
-      //     name: 'Hairspray Rock',
-      //     status: 'active',
-      //   },
-      //   {
-      //     name: tag.name,
-      //     status: 'active',
-      //   },
-      // ])
+    test('should convert all entered tag names into TitleCase', () => {
 
-      // await waitFor(() => expect(createTag).toHaveBeenCalledTimes(1))
-      // expect(createTag).toHaveBeenCalledWith(tag)
+    })
 
-      const allTags = await screen.findAllByTestId('taglist-tag');
-      console.log('🎯 allTags', allTags);
-      expect(allTags).toHaveTextContent('Punk');
-
-
-
-
+    test('should ignore leading / trailing whitespace in tag names', () => {
 
     })
   })
-
-
-  test('should show the new tag in the list when a tag is created', () => {
-    // search for element that contains the tag
-
-  })
-
-  test('should not allow the creation of duplicate tags', () => {
-
-  })
-
-  test('should convert all entered tag names into TitleCase', () => {
-
-  })
-
-  test('should ignore leading / trailing whitespace in tag names', () => {
-
-  })
-
 });
 
 

@@ -1,4 +1,4 @@
-import Artist from './artist.js';
+import Artist from '../Artist/Artist.js';
 
 function ArtistList(props) {
 

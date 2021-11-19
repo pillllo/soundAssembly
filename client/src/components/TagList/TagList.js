@@ -1,5 +1,5 @@
 import { createTag } from "../../ApiService";
-import Tag from "../SideBar/tag";
+import Tag from "../Tag/Tag";
 
 function TagList(props) {
   function renderTags(tags) {
@@ -29,7 +29,7 @@ function TagList(props) {
       const newList = [...props.tags, { name: input, status: "inactive" }];
       try {
         // TODO: createTag should return a response
-        await createTag(input);
+        const updatedTags = await createTag(input);
         props.setTags(newList);
       } catch (err) {
         console.error();
@@ -41,9 +41,19 @@ function TagList(props) {
   return (
     <div className="tagList-container">
       <p>Filter via tag:</p>
-      <div data-testid="taglist" className="tagList">
-        {renderTags(props.tags)}
-        <input type="text" onKeyUp={submitTag} placeholder="add tag..." />
+      <div
+        className="tagList"
+        data-testid="taglist"
+      >
+        {
+          renderTags(props.tags)
+        }
+        <input
+          data-testid="taglist-input"
+          onKeyUp={submitTag}
+          placeholder="add tag..."
+          type="text"
+        />
       </div>
     </div>
   );

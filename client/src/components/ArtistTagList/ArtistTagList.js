@@ -1,7 +1,8 @@
+import { useState } from 'react';
+
+import ArtistTag from '../ArtistTag/ArtistTag';
 import { createTag } from '../../ApiService';
 import { tagArtist } from '../../ApiService';
-import ArtistTag from './artistTag';
-import { useState } from 'react';
 
 function ArtistTagList(props) {
 

@@ -1,7 +1,7 @@
 import './App.css';
 // TODO: #15 write component files with capital letter
-import Login from "./components/Login/login";
-import Dashboard from "./components/Library/dashboard";
+import Login from "./components/Login/Login";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 function App() {
   // Code returned by spotify API during auth

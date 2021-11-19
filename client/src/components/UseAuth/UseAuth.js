@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { login } from '../../ApiService';
 
-function useAuth(code) {
+function UseAuth (code) {
   const [accessToken, setAccessToken] = useState();
   const [refreshToken, setRefreshToken] = useState();
   const [expiresIn, setExpiresIn] = useState();
@@ -16,4 +16,4 @@ function useAuth(code) {
 
 }
 
-export default useAuth;
+export default UseAuth;
