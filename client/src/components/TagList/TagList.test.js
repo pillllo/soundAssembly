@@ -7,10 +7,10 @@ import { createTag } from '../../ApiService.js';
 describe('TagList', () => {
 
   const mockTags = [
-    {
-      name: 'Teen Pop',
-      status: 'active',
-    },
+    // {
+    //   name: 'Teen Pop',
+    //   status: 'active',
+    // },
     {
       name: 'Country',
       status: 'active',
@@ -48,46 +48,22 @@ describe('TagList', () => {
 
     test.only('should call createTag with the right input', async () => {
 
-      const createTag = jest.fn();
-      const tag = { name: 'Punk' };
+      // const createTag = jest.fn();
+      // const tag = { name: 'Punk' };
 
       render(<TagList tags={mockTags} />)
 
       const tagInput = screen.getByPlaceholderText('add tag...')
 
-      userEvent.type(tagInput, 'Punk');
-      fireEvent.keyDown(tagInput, { key: 'Enter', code: 'Enter' })
-      console.log(`typeof createTag: ${typeof createTag}`)
+      userEvent.type(tagInput, 'Punk')
 
-      // createTag.mockResolvedValue([
-      //   {
-      //     name: 'Teen Pop',
-      //     status: 'active',
-      //   },
-      //   {
-      //     name: 'Country',
-      //     status: 'active',
-      //   },
-      //   {
-      //     name: 'Hairspray Rock',
-      //     status: 'active',
-      //   },
-      //   {
-      //     name: tag.name,
-      //     status: 'active',
-      //   },
-      // ])
-
-      // await waitFor(() => expect(createTag).toHaveBeenCalledTimes(1))
-      // expect(createTag).toHaveBeenCalledWith(tag)
+      fireEvent.keyDown(tagInput, {key: 'Enter', code: 'Enter', keyCode: 13})
 
       const allTags = await screen.findAllByTestId('taglist-tag');
-      console.log('🎯 allTags', allTags);
-      expect(allTags).toHaveTextContent('Punk');
-
-
-
-
+      // console.log('🎯 allTags', allTags);
+      const tag = await screen.findByText('Punk');
+      console.log('🎯 tag', tag);
+      // expect(allTags).toHaveTextContent('Punk');
 
     })
   })

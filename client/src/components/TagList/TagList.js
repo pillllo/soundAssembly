@@ -25,6 +25,7 @@ function TagList(props) {
 
   async function submitTag(event) {
     if (event.keyCode === 13) {
+      console.log('****** submitTag() Enter detected in input')
       const input = event.target.value;
       const newList = [...props.tags, { name: input, status: "inactive" }];
       try {
@@ -43,7 +44,7 @@ function TagList(props) {
       <p>Filter via tag:</p>
       <div data-testid="taglist" className="tagList">
         {renderTags(props.tags)}
-        <input type="text" onKeyUp={submitTag} placeholder="add tag..." />
+        <input id="tag-input" type="text" onKeyUp={submitTag} placeholder="add tag..." />
       </div>
     </div>
   );

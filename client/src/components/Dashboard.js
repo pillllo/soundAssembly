@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route } from "react-router-dom";
 import { Outlet } from 'react-router';
-import SideBar from '../SideBar/sideBar';
-import Logout from '../Logout/logout';
-import ArtistList from "./artistList";
-import ArtistPage from "../ArtistPage/artistPage";
-import { getLibrary } from '../../ApiService';
-import useAuth from '../UseAuth/useAuth';
+import SideBar from './SideBar/sideBar';
+import Logout from './Logout/logout';
+import ArtistList from "./Library/artistList";
+import ArtistPage from "./ArtistPage/artistPage";
+import { getLibrary } from '../ApiService';
+import useAuth from './UseAuth/useAuth';
 
 function Dashboard(props) {
   const accessToken = useAuth(props.code)
