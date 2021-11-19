@@ -6,6 +6,7 @@ exports.getTags = async (req, res) => {
   try {
     // TODO: #11 refactor function so that tags = tags, not an array of tags
     const tags = await Library.find({username: "natpil"}, { tags: 1 });
+    console.log(tags)
     res.send(tags[0].tags);
   } catch (error) {
     console.error(error);
@@ -18,13 +19,14 @@ exports.getTags = async (req, res) => {
 exports.createTag = async (req, res) => {
   try {
     // TODO: #12 rename 'name' to tag for readbility
-    const {name} = req.body;
-    const tag = await Library.findOneAndUpdate({username: "natpil"}, {
+    const tag = req.body;
+    // TODO: remove hardcoded username see #8
+    const { tags: updatedTags } = await Library.findOneAndUpdate({username: "natpil"}, {
       $push: {
-        "tags": {name: name}
+        "tags": { name: tag.name }
       }
-    })
-    res.send(tag)
+    }, { new: true }) // ensure we return the tag we just created
+    res.send(updatedTags);
     res.status(204);
   } catch (error) {
     console.error(error);

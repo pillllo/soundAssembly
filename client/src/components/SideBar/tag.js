@@ -27,7 +27,11 @@ function Tag(props) {
   const tagClass = `tag ${props.tag.status}`
 
   return (
-    <div className={tagClass} onClick={toggleTag}>
+    <div
+      className={tagClass}
+      data-testid="taglist-tag"
+      onClick={toggleTag}
+    >
       {props.tag.name}
     </div>
   );

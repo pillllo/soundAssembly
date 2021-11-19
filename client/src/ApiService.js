@@ -15,6 +15,7 @@ function fetchRequest (path, options) {
 
 // Spotify OAuth
 
+// Used: Login component
 function login (code) {
   return axios.post(base_url + '/login', {
     code,
@@ -25,62 +26,71 @@ function login (code) {
 
 // Import/refresh library via Spotify
 
-const importLibrary = () => {
-  return fetchRequest('/importLibrary')
+// Used: Logout component
+function importLibrary() {
+  return fetchRequest('/importLibrary');
 }
+
 
 // Fetch existing list of followed artists and tags from db
 
-const getLibrary = () => {
-  return fetchRequest('/getLibrary')
+// Used: Dashboard component
+function getLibrary() {
+  return fetchRequest('/getLibrary');
 }
 
-const getArtist = (artistId) => {
-  return fetchRequest(`/artists/${artistId}`)
+// Used: ArtistPage component
+function getArtist(artistId) {
+  return fetchRequest(`/artists/${artistId}`);
 }
+
 
 // Create tag
 
-const createTag = (tagName) => {
+// Used: TagList component
+function createTag(tagName) {
   return fetchRequest(`/tags`, {
     method: 'POST',
     headers: {
       "Content-Type": "application/json"
     },
     // TODO: #18 rename name to tag in all API calls
-    body: JSON.stringify({name: tagName})
-  })
+    body: JSON.stringify({ name: tagName })
+  });
 }
 
 // Add tag to artist
 
-const tagArtist = (artistId, tagName) => {
+// Used: ArtistTag ArtistTagList component
+function tagArtist(artistId, tagName) {
   return fetchRequest(`/tags/add/${artistId}`, {
     method: 'POST',
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({name: tagName})
-  })
+    body: JSON.stringify({ name: tagName })
+  });
 }
 
 // Remove tag from artist
 
-const untagArtist = (artistId, tagName) => {
+// Used: ArtistTag ArtistTagList component
+function untagArtist(artistId, tagName) {
   return fetchRequest(`/tags/remove/${artistId}`, {
     method: 'POST',
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({name: tagName})
-  })
+    body: JSON.stringify({ name: tagName })
+  });
 }
 
 // Requests directly to Spotify API
 // TODO: #19 move all Spotify API calls to server?
 
-const access_token = "BQAgbiisEOlIjwFpJQUUzT7est9o-9JdT8pR4YsplPlBW94FrkbIGwHMlrYIooZ2zrQsduncPRFfDszSjdJPN9tgx7Nhe_uJzp3FqSlo_TBaektDFlHb30ZCi6EwlPCVdcBFMM0ObEbe1_HHxR-mMrLoLXEVuL8";
+const access_token = "BQDFxLql4F_Dykh_DFJiqOzqsbIu1p4D96kLoSKypXYniyfGxyNUUUr1WS4EavE8ClS_BKSdfjV-1s943dD_Q429m4mR6Zat0H_EmutFZHaSe4guBegsCuiM1NaY9nBCJNzO9PO-fOtPsavJ9UjT4E4C2xAjx-U";
 
+// Used: ArtistPage component
 async function getAlbums(artistId, req, res) {
   const response = await fetch(`https://api.spotify.com/v1/artists/${artistId}/albums`, {
       method: 'get',

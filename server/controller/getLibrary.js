@@ -1,7 +1,8 @@
 const axios = require('axios');
 const Library = require('../model/librarySchema.js');
+require('dotenv').config();
 
-const access_token = "BQAgbiisEOlIjwFpJQUUzT7est9o-9JdT8pR4YsplPlBW94FrkbIGwHMlrYIooZ2zrQsduncPRFfDszSjdJPN9tgx7Nhe_uJzp3FqSlo_TBaektDFlHb30ZCi6EwlPCVdcBFMM0ObEbe1_HHxR-mMrLoLXEVuL8"; // static token before full authorization module is complete
+const access_token = process.env.ACCESS_TOKEN;
 
 // Fetch existing library from db
 
@@ -30,8 +31,15 @@ exports.importLibrary = async (req, res) => {
     const profileData = await fetchProfile();
     const username = profileData.data.id;
     // create account with followed artists in the DB
-    const event = await Library.create({username: username, tags: taggedArtists.tags, artists: taggedArtists.artistList})
-    res.send(event);
+    const userLibrary = await Library.create(
+      {
+        username: username,
+        tags: taggedArtists.tags,
+        artists: taggedArtists.artistList
+      }
+    );
+    console.log(userLibrary)
+    res.send(userLibrary);
   } catch (error) {
     console.error(error);
     res.status(500);
