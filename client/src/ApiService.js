@@ -22,8 +22,6 @@ function login (code) {
   })
 }
 
-// TODO: #17 use same way to declare functions in whole file
-
 // Import/refresh library via Spotify
 
 // Used: Logout component

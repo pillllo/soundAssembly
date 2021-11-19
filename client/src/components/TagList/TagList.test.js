@@ -9,10 +9,10 @@ import TagList from './TagList';
 describe('TagList', () => {
 
   const mockTags = [
-    {
-      name: 'Teen Pop',
-      status: 'active',
-    },
+    // {
+    //   name: 'Teen Pop',
+    //   status: 'active',
+    // },
     {
       name: 'Country',
       status: 'active',
