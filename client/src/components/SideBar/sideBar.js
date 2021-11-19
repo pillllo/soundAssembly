@@ -1,6 +1,6 @@
-import TagList from './tagList';
+import TagList from '../TagList/TagList';
 // TODO: #25 move assets to assets folder
-import logo from '../../logoWhite.png';
+import logo from '../../assets/logoWhite.png';
 
 function SideBar(props) {
 
