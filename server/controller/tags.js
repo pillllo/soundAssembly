@@ -26,6 +26,7 @@ exports.createTag = async (req, res) => {
         "tags": { name: tag.name }
       }
     }, { new: true }) // ensure we return the tag we just created
+    console.log(updatedTags)
     res.send(updatedTags);
     res.status(204);
   } catch (error) {
