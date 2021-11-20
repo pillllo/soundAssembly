@@ -63,8 +63,8 @@ describe('TagList', () => {
       fireEvent.keyUp(tagInput, { key: 'Enter', code: 'Enter', charCode: 13 })
       // expect(screen.getByTestId('taglist-input')).toHaveTextContent('');
       // screen.debug()
-      const result = await screen.findByText(punkGenre);
-      console.log(result);
+      // const result = await screen.findByText(punkGenre);
+      // console.log(result);
     });
 
     test('should not allow the creation of duplicate tags', () => {
