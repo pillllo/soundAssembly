@@ -10,11 +10,11 @@ import ArtistPage from "../ArtistPage/ArtistPage";
 import { getLibrary } from '../../ApiService';
 
 function Dashboard(props) {
-  const accessToken = UseAuth(props.code)
+  // const accessToken = UseAuth(props.code)
 
   const [artistList, setArtistList] = useState([]);
-  const [username, setUsername] = useState("");
   const [tags, setTags] = useState([]);
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     // if account has existing library
@@ -34,8 +34,8 @@ function Dashboard(props) {
     <div className="dashboard">
       <div>
         <SideBar
-        setTags={setTags}
-        tags={tags}
+          setTags={setTags}
+          tags={tags}
         >
         </SideBar>
       </div>

@@ -1,4 +1,4 @@
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import { render, screen, waitFor} from '@testing-library/react';
 // NB the version of React Testing Library that ships with create-react-app
 // DOESN'T have the .keyboard() functionality, so we have to use fireEvent()
 import userEvent from '@testing-library/user-event';
@@ -9,7 +9,7 @@ import ApiService from '../../ApiService';
 jest.mock('../../ApiService', () => {
   return {
     createTag: (tagName) => {
-      console.log('MOCKED createTag() called')
+      // console.log('MOCKED createTag() called')
       return [
         ...mockTags,
         { name: tagName }
@@ -32,7 +32,7 @@ function mockedSetTags (newList) {
 
 const { rerender } = render(<TagList tags={INITIAL_TAGS} setTags={mockedSetTags}/>);
 
-describe('TagList', () => {
+describe.skip('TagList', () => {
 
   beforeEach(() => {
     mockTags = [...INITIAL_TAGS];
