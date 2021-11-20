@@ -9,7 +9,7 @@ function AlbumList(props) {
         return list.map(map => map.name).indexOf(album.name) === pos
       })
       .map(album => {
-      return <Album album={album} key={album.id}></Album>
+        return <Album album={album} key={album.id}></Album>
       })
   }
 
