@@ -6,7 +6,7 @@ const redirect_uri = 'http://localhost:3000/';
 
 exports.authorize = async (req, res) => {
     // TODO: #14 remove cons logs
-    console.log(req.body.code)
+    // console.log(req.body.code)
     const code = req.body.code;
     const spotifyApi = new SpotifyWebApi({
       client_id: process.env.CLIENT_ID,

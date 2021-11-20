@@ -1,70 +1,68 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, waitFor} from '@testing-library/react';
 // NB the version of React Testing Library that ships with create-react-app
 // DOESN'T have the .keyboard() functionality, so we have to use fireEvent()
 import userEvent from '@testing-library/user-event';
 
 import TagList from './TagList';
-// import { createTag } from '../../ApiService.js';
+import ApiService from '../../ApiService';
 
-describe('TagList', () => {
-
-  const mockTags = [
-    {
-      name: 'Teen Pop',
-      status: 'active',
-    },
-    {
-      name: 'Country',
-      status: 'active',
-    },
-    {
-      name: 'Hairspray Rock',
-      status: 'active',
-    },
-  ];
-
-  // jest.mock('createTag', () => {
-  //   console.log('executed')
-  //   return [{ name: 'Punk' }]
-  // });
-
-  jest.mock('../../ApiService', () => {
-    return {
-      createTag: (tagName) => [
+jest.mock('../../ApiService', () => {
+  return {
+    createTag: (tagName) => {
+      // console.log('MOCKED createTag() called')
+      return [
         ...mockTags,
-        { name: tagName }]
+        { name: tagName }
+      ]
     }
-  });
+  }
+});
 
-  // beforeEach stuff goes here?
-  render(<TagList tags={mockTags} />)
+const INITIAL_TAGS = [
+  { name: 'Teen Pop', status: "inactive"},
+  { name: 'Country', status: "inactive"},
+  { name: 'Hairspray Rock', status: "inactive"},
+];
+
+let mockTags = [];
+
+function mockedSetTags (newList) {
+  mockTags = [...newList];
+}
+
+const { rerender } = render(<TagList tags={INITIAL_TAGS} setTags={mockedSetTags}/>);
+
+describe.skip('TagList', () => {
+
+  beforeEach(() => {
+    mockTags = [...INITIAL_TAGS];
+  })
 
   describe('rendering the tag list', () => {
 
     test('should render a sorted list of tags', () => {
       const allTags = screen.getAllByTestId('taglist-tag');
-      expect(allTags.length).toBe(4);
+      expect(allTags.length).toBe(3);
       expect(allTags[0]).toHaveTextContent('Country');
       expect(allTags[2]).toHaveTextContent('Teen Pop');
     });
 
   })
 
-  describe.only('adding tags', () => {
+  describe('adding tags', () => {
 
-    test('should create a new tag', async () => {
-
+    test.only('should create a new tag', async () => {
       const punkGenre = 'Punk';
-      const tagInput = screen.getByTestId('taglist-input')
+      const tagInput = screen.getByPlaceholderText('add tag...');
+      const submitBtn = screen.getByRole('button', {name: 'Submit tag'});
 
       // screen.debug() // <--- useful tip to see that DOM is rendering as you expect
       userEvent.type(tagInput, punkGenre);
-      expect(screen.getByTestId('taglist-input')).toHaveValue(punkGenre);
-      fireEvent.keyUp(tagInput, { key: 'Enter', code: 'Enter', charCode: 13 })
-      // expect(screen.getByTestId('taglist-input')).toHaveTextContent('');
-      // screen.debug()
-      // const result = await screen.findByText(punkGenre);
-      // console.log(result);
+      await waitFor(() => userEvent.click(submitBtn));
+
+      rerender(<TagList tags={mockTags}/>);
+      const allTags = screen.getAllByTestId('taglist-tag');
+      expect(allTags[2]).toHaveTextContent('Punk');
     });
 
     test('should not allow the creation of duplicate tags', () => {

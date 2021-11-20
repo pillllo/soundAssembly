@@ -22,8 +22,6 @@ function login (code) {
   })
 }
 
-// TODO: #17 use same way to declare functions in whole file
-
 // Import/refresh library via Spotify
 
 // Used: Logout component
@@ -88,7 +86,7 @@ function untagArtist(artistId, tagName) {
 // Requests directly to Spotify API
 // TODO: #19 move all Spotify API calls to server?
 
-const access_token = "BQBIBJsweOy5Ne7TDb7F2svkwVhjrI4fkLzQvR83ou6O72ivkU99KSXcyYwLSYjbmi--ai0-qsXe9wNxyxpFOcoiasb9y4XwjGqo8KaNjZqoCQRairHJMcj6vmDz8BmoV9h06WrApLG0LCPBS29Vltz2iTkDIf5LWmUagQ";
+const access_token = "BQDItQK3QmQDuCwCj1kZMzhi1QghrXFbmP1FC3YAX6q6EbPma9ONX-yagZlvi3Dnc51hLv30WczpXQ3xp4FmgEZHdQ-H0ZMSHiNecJKSv4UNyeh7KAuh32Y4QGOElfLvlraAehDJ3UUpe3erH21Bu_yW-5Ipd8E";
 
 // Used: ArtistPage component
 async function getAlbums(artistId, req, res) {
