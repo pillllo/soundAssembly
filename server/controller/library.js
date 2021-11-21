@@ -8,9 +8,8 @@ const access_token = process.env.ACCESS_TOKEN;
 
 exports.getLibrary = async (req, res) => {
   try {
-    // TODO: #6 rename variable artistFetch to be more self-explanatory
-    const artistFetch = await Library.find({username: "dianafoxlee"});
-    res.send(artistFetch);
+    const userLibrary = await Library.find({username: process.env.USERNAME});
+    res.send(userLibrary);
   } catch (error) {
     console.error(error);
     res.status(500);

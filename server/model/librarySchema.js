@@ -39,5 +39,4 @@ const LibrarySchema = new Schema({
   { typeKey: '$type' }
 );
 
-// TODO: #4 consider renaming Account to LibraryImport (or anything clearer) // align with naming in controllers
-module.exports = mongoose.model('Account', LibrarySchema)
+module.exports = mongoose.model('Library', LibrarySchema)

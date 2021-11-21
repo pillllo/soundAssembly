@@ -1,8 +1,7 @@
 const { Router } = require('express');
 const { getFollowedArtists, getArtist } = require('./controller/artists');
 const { authorize, refreshToken } = require('./controller/authorization');
-// TODO: #3 rename library controller // possibly rename variable getLibrary and importLibrary
-const { getLibrary, importLibrary } = require('./controller/getLibrary');
+const { getLibrary, importLibrary } = require('./controller/library');
 const { getTags, createTag, tagArtist, untagArtist } = require('./controller/tags');
 const router = Router();
 
