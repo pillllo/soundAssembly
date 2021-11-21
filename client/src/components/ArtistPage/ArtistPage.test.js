@@ -115,5 +115,6 @@ describe("ArtistPage", () => {
     const allAlbums = await waitFor(() => screen.getAllByTestId("album"));
     expect(allAlbums.length).toBe(2);
     expect(screen.getByText(/Crazy Chopin/)).toBeInTheDocument();
+    expect(screen.getByText(/Crazy Chopin (2021)/)).toBeInTheDocument();
   });
 });
