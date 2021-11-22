@@ -37,7 +37,6 @@ exports.importLibrary = async (req, res) => {
         artists: taggedArtists.artistList
       }
     );
-    console.log(userLibrary)
     res.send(userLibrary);
   } catch (error) {
     console.error(error);

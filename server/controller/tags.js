@@ -5,7 +5,7 @@ const Library = require('../model/librarySchema.js');
 exports.getTags = async (req, res) => {
   try {
     // TODO: #11 refactor function so that tags = tags, not an array of tags
-    const tags = await Library.find({username: "natpil"}, { tags: 1 });
+    const tags = await Library.find({username: "22ejpen6z5sisae7nj4lua01r"}, { tags: 1 });
     console.log(tags)
     res.send(tags[0].tags);
   } catch (error) {
@@ -21,7 +21,7 @@ exports.createTag = async (req, res) => {
     // TODO: #12 rename 'name' to tag for readbility
     const tag = req.body;
     // TODO: remove hardcoded username see #8
-    const { tags: updatedTags } = await Library.findOneAndUpdate({username: "natpil"}, {
+    const { tags: updatedTags } = await Library.findOneAndUpdate({username: "22ejpen6z5sisae7nj4lua01r"}, {
       $push: {
         "tags": { name: tag.name }
       }
@@ -43,7 +43,7 @@ exports.tagArtist = async (req, res) => {
     // TODO: #13 rename 'name' to tag for readability
     const {name} = req.body;
     const tag = await Library.updateOne({
-      "username": "natpil"
+      "username": "22ejpen6z5sisae7nj4lua01r"
     },
     {
       $push: {
@@ -75,7 +75,7 @@ exports.untagArtist = async (req, res) => {
     // TODO: #14 rename 'name' to tag for readability
     const {name} = req.body;
     const tag = await Library.updateOne({
-      "username": "natpil"
+      "username": "22ejpen6z5sisae7nj4lua01r"
     },
     {
       $pull: {

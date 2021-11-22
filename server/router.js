@@ -9,7 +9,7 @@ const router = Router();
 
 // OAuth
 router.post('/login', authorize)
-// router.get('/refresh_token', refreshToken); // Currently unused
+// router.get('/refresh_token', refreshToken); // Currently not used
 
 // Fetch artists
 router.get('/importLibrary', importLibrary);
@@ -17,7 +17,7 @@ router.get('/importLibrary', importLibrary);
 // FROM DB
 
 // Artists
-// router.get('/artists', getFollowedArtists); // Currently unused
+// router.get('/artists', getFollowedArtists); // Currently not used
 router.get('/artists/:artistId', getArtist);
 
 // Fetch library for the account
