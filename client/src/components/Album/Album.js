@@ -5,7 +5,7 @@ function Album(props) {
   const releaseYear = props.album.release_date.slice(0, 4)
 
   return (
-    <div className="item">
+    <div data-testid="album" className="item">
       <a href={props.album.external_urls.spotify} target="_blank" rel="noreferrer">
         <div>
           <div
