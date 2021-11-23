@@ -31,7 +31,7 @@ describe('Tags integration test', () => {
 
   beforeEach(async () => {
     const userLibrary = await Library.create({
-      username: "TEST USER",
+      username: process.env.USER_NAME,
       tags: [{ name: "Indie" }, { name: "Rock" }, { name: "Pop" }],
       artists: [
         {
@@ -57,17 +57,15 @@ describe('Tags integration test', () => {
     });
   });
 
-  afterEach(async () => {
-    await Library.deleteMany();
-  });
+  // afterEach(async () => {
+  //   await Library.deleteMany();
+  // })
 
-  it('should save a tag to the database', async () => {
-    const tag = 'Classic'
-    const res = await request.post('/tags', JSON.stringify(testTag));
-    console.log(res);
-    // const { tags: updatedTags } = await Library.findOne({username: "TEST USER"})
-    // expect(updatedTags.length).toEqual(3)
-    // done()
+  it('should save a tag to the database', async (done) => {
+    const tag = {name: 'Classic'}
+    const res = await request.post('/tags').send(tag)
+    // const res = await request.get('/getlibrary')
+    console.log('response', res)
   })
 
 })
