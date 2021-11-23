@@ -65,7 +65,7 @@ describe('Tags integration test', () => {
     const tag = {name: 'Classic'}
     const res = await request.post('/tags').send(tag)
     // const res = await request.get('/getlibrary')
-    console.log('response', res)
+    console.log('response', res);
   })
 
 })
