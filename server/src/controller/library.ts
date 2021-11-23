@@ -22,12 +22,12 @@ exports.importLibrary = async (req, res) => {
   try {
     // fetch followed artists for the specific account
     // TODO: #7 combine this into one step
-    const artistFetch = await fetchArtists();
+    const artistFetch = await fetchArtists(req, res);
     const followedArtists = artistFetch.data.artists.items;
     // add tags array to each artist pre-populating some tags based on the genre
     const taggedArtists = await populateTags(followedArtists);
     // fetch profile id for the specific account
-    const profileData = await fetchProfile();
+    const profileData = await fetchProfile(req, res);
     const username = profileData.data.id;
     // create account with followed artists in the DB
     const userLibrary = await Library.create(
