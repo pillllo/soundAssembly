@@ -61,10 +61,11 @@ describe('Tags integration test', () => {
   })
 
   it('should save a tag to the database', async () => {
-    const tag = 'Classic'
-    const res = await (await request.post('/tags')).send({tag})
+    const tag = {name: 'Classic'}
+    const res = await request.post('/tags').send(tag)
     await supertest(app)
       .post('/tags')
+
 
     // console.log(updatedTags);
     // const { tags: updatedTags } = await Library.findOne({username: "TEST USER"})

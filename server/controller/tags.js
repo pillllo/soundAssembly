@@ -20,6 +20,7 @@ exports.createTag = async (req, res) => {
   try {
     // TODO: #12 rename 'name' to tag for readbility
     const tag = req.body;
+    console.log(tag);
     // TODO: remove hardcoded username see #8
     const { tags: updatedTags } = await Library.findOneAndUpdate({username: "22ejpen6z5sisae7nj4lua01r"}, {
       $push: {
