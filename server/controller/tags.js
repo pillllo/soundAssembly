@@ -20,14 +20,12 @@ exports.createTag = async (req, res) => {
   try {
     // TODO: #12 rename 'name' to tag for readbility
     const tag = req.body;
-    console.log(tag);
     // TODO: remove hardcoded username see #8
-    const { tags: updatedTags } = await Library.findOneAndUpdate({username: process.env.USERNAME}, {
+    const { tags: updatedTags } = await Library.findOneAndUpdate({username: 'natpil'}, {
       $push: {
         "tags": { name: tag.name }
       }
     }, { new: true }) // ensure we return the tag we just created
-    console.log(updatedTags)
     res.send(updatedTags);
     res.status(204);
   } catch (error) {
