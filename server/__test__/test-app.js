@@ -3,7 +3,7 @@
 //----------------------------------------------------------------
 
 const express = require('express');
-const router = require('../router');
+const router = require('../src/router');
 const cors = require('cors');
 
 const { CLIENT_CORS_URL } = process.env;
