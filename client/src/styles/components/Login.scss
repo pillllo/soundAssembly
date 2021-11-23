@@ -1,6 +1,6 @@
 .login {
-  height: 100vh;
   display: flex;
+  height: 100vh;
   align-items: center;
   justify-content: center;
   font-family: $Poppins;
@@ -21,16 +21,15 @@
   }
 
   .login-form {
-    color: $dark;
-    background-color: $light;
-    width: 400px;
-    height: 450px;
-    margin-bottom: 8%;
-    border-radius: 3px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    width: 400px;
+    height: 450px;
+    border-radius: 3px;
+    color: $dark;
+    background-color: $light;
 
     div {
       width: 80%;
