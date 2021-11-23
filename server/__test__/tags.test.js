@@ -56,7 +56,7 @@ describe('Tags integration test', () => {
 
   it('should save a tag to the database', async (done) => {
     const tag = {name: 'Classic'}
-    const res = await request.post('/tags').set('Content-type', 'application/json').send(tag)
+    const res = await request.post('/tags').send(tag)
     // const res = await request.get('/getlibrary')
     console.log('response', res)
   })
