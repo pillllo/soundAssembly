@@ -10,6 +10,7 @@ import { getLibrary } from '../../ApiService';
 import UseAuth from '../UseAuth/UseAuth';
 
 import UserData from '../../@types/UserData';
+import Artist from '../../@types/Artist';
 import Tag from '../../@types/Tag';
 
 type DashboardProps = {
@@ -19,8 +20,8 @@ type DashboardProps = {
 function Dashboard ({ code }: DashboardProps) {
   // const accessToken = UseAuth(props.code)
 
-  const [artistList, setArtistList] = useState([]);
-  const [tags, setTags] = useState([]);
+  const [artistList, setArtistList] = useState<Artist[] | null>([]);
+  const [tags, setTags] = useState<Tag[] | undefined>([]);
   const [username, setUsername] = useState("");
 
   useEffect(() => {
@@ -31,13 +32,14 @@ function Dashboard ({ code }: DashboardProps) {
           const userData: UserData = response[0];
           setArtistList(userData.artists);
           setUsername(userData.username);
-          userData.tags.forEach((tag: Tag) => tag.status = "inactive");
-          if (userData) {
+          if (userData.tags) {
+            userData.tags.forEach((tag: Tag) => tag.status = "inactive");
             setTags(userData.tags);
           }
         }
       })
       .catch((err) => {
+        // TODO: add
         console.log(err);
       })
   }, [setArtistList, setUsername, setTags]);
