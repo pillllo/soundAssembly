@@ -12,7 +12,7 @@ import Tag from './Tag';
 interface UserData {
   username: string,
   artists: Artist[],
-  tags?: Tag[],
+  tags: Tag[],
 }
 
 export default UserData;

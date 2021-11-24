@@ -4,7 +4,7 @@ import { Outlet } from 'react-router';
 
 import ArtistList from "../ArtistList/ArtistList";
 import ArtistPage from "../ArtistPage/ArtistPage";
-import Logout from '../Logout/Logout';
+import TopBar from '../TopBar/TopBar';
 import SideBar from '../SideBar/SideBar';
 import { getLibrary } from '../../ApiService';
 import UseAuth from '../UseAuth/UseAuth';
@@ -20,8 +20,14 @@ type DashboardProps = {
 function Dashboard ({ code }: DashboardProps) {
   // const accessToken = UseAuth(props.code)
 
-  const [artistList, setArtistList] = useState<Artist[] | null>([]);
-  const [tags, setTags] = useState<Tag[] | undefined>([]);
+  const handleUpdateUserData = (userData: UserData): void => {
+    setArtistList(userData.artists);
+    setUsername(userData.username);
+    setTags(userData.tags);
+  }
+
+  const [artistList, setArtistList] = useState<Artist[]>([]);
+  const [tags, setTags] = useState<Tag[]>([]);
   const [username, setUsername] = useState("");
 
   useEffect(() => {
@@ -46,20 +52,13 @@ function Dashboard ({ code }: DashboardProps) {
 
   return (
     <div className="dashboard">
-      <div>
-        <SideBar
-          setTags={setTags}
-          tags={tags}
-        >
-        </SideBar>
+      <div className="dashboard__sidebar">
+        <SideBar setTags={setTags} tags={tags} />
       </div>
-      <div>
-        <Logout
-          setArtistList={setArtistList}
-          setTags={setTags}
-          setUsername={setUsername}
+      <div className="dashboard__content">
+        <TopBar
+          onUpdateUserData={handleUpdateUserData}
           username={username}
-          tags={tags}
         />
         <Routes>
           <Route

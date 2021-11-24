@@ -11,8 +11,8 @@ function SideBar(props) {
         </header>
         <div>
           <TagList
-          tags={props.tags}
-          setTags={props.setTags}
+            tags={props.tags}
+            setTags={props.setTags}
           />
         </div>
       </div>
