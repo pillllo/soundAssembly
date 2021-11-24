@@ -22,10 +22,10 @@ exports.importLibrary = async (req, res) => {
   try {
     // fetch followed artists for the specific account
     // TODO: #7 combine this into one step
-    const artistFetch = await fetchArtists();
-    const followedArtists = artistFetch.data.artists.items;
+    const apiResponse = await fetchArtists();
+    const followedArtists = apiResponse.data.artists.items;
     // add tags array to each artist pre-populating some tags based on the genre
-    const taggedArtists = await populateTags(followedArtists);
+    const taggedArtists = populateTags(followedArtists);
     // fetch profile id for the specific account
     const profileData = await fetchProfile();
     const username = profileData.data.id;
@@ -80,13 +80,15 @@ function populateTags(artistList) {
     const artistTags = [];
 
     // List of genres for filtering
-    const genreList = ["rock","metal","punk","jazz","ska","reggae","hip hop","EDM","indie"]
+    const termsOfInterest = ["rock","metal","punk","jazz","ska","reggae","hip hop","EDM","indie"]
 
-    genreList.forEach(item => {
-      if (artistList[artist].genres.some(genre => genre.includes(item))) {
-        artistTags.push({name: item});
+    termsOfInterest.forEach(term => {
+      // genres is on the Spotify data - if an artist's genre matches one in
+      // our "terms of interest"
+      if (artistList[artist].genres.some(genre => genre.includes(term))) {
+        artistTags.push({ name: term });
         if (!tags.some(tag => tag.name === item)) {
-          tags.push({name: item})
+          tags.push({ name: item })
         }
       }
     })
@@ -99,9 +101,12 @@ function populateTags(artistList) {
     //   artistTags.push("electronic")
     // }
 
+    // here we are adding an extra artistTags prop to the Spotify data
     artistList[artist].artistTags = artistTags;
   }
 
-
-  return {artistList: artistList, tags: tags}
+  return {
+    artistList: artistList,
+    tags: tags
+  }
 }
