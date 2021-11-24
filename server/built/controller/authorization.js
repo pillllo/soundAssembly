@@ -1,3 +1,4 @@
+"use strict";
 const SpotifyWebApi = require('spotify-web-api-node');
 require('dotenv').config();
 const redirect_uri = 'http://localhost:3000/';

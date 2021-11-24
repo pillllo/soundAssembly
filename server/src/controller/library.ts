@@ -9,7 +9,7 @@ const access_token = process.env.ACCESS_TOKEN;
 
 // Fetch user's existing library from db
 
-exports.getLibrary = async (req: Request, res: Response) => {
+export async function getLibrary (req: Request, res: Response) {
   try {
     const userLibrary = await Library.find({ username: "natpil" });
     res.send(userLibrary);
@@ -21,7 +21,7 @@ exports.getLibrary = async (req: Request, res: Response) => {
 
 // Fetch list of followed artists (library) from API and create an entry in the db
 
-exports.importLibrary = async (req: Request, res: Response) => {
+export async function importLibrary (req: Request, res: Response) {
   try {
     // fetch followed artists for the specific account
     const artistsFetch = await fetchFromSpotifyApi("artists");

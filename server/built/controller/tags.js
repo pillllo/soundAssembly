@@ -1,3 +1,4 @@
+"use strict";
 const Library = require('../model/librarySchema.js');
 // Get all tags in the account
 exports.getTags = async (req, res) => {
