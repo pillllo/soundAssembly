@@ -12,7 +12,7 @@ export interface Artist {
   popularity: number,
   type: string,
   uri: string,
-  artistTags?: Tag[]
+  tags: Tag[]
 }
 
 export interface Tag {

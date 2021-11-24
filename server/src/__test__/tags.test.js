@@ -10,8 +10,8 @@ const { DB_NAME, DB_URL, PORT } = process.env;
 const supertest = require("supertest");
 const mongoose = require("mongoose");
 const createServer = require("./test-app.js");
-const db = require("../src/model/dbaccess.js");
-const Library = require("../src/model/librarySchema.js");
+const db = require("../model/dbaccess.js");
+const Library = require("../model/librarySchema.js");
 
 const app = createServer();
 const request = supertest(app);
