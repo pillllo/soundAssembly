@@ -2,7 +2,10 @@ export interface Artist {
   external_urls: {
     spotify: string,
   },
-  followers: { href: null, total: number },
+  followers: {
+    href: null,
+    total: number
+  },
   genres: string[],
   href: string,
   id: string,
