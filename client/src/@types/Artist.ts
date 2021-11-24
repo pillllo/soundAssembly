@@ -1,4 +1,4 @@
-interface Artist {
+export interface Artist {
   externalUrls: {
     [key: string]: string,
   },
@@ -9,15 +9,17 @@ interface Artist {
   genres: [string]
   href: string,
   id: string,
-  images: [{
-    height: number,
-    url: string,
-    width: number,
-  }],
+  images: Image[],
   name: string,
   popularity: number,
   type: string,
   uri: string,
 };
+
+interface Image {
+  height: number,
+  url: string,
+  width: number,
+}
 
 export default Artist;
