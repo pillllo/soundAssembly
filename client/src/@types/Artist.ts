@@ -1,3 +1,5 @@
+import Tag from "./Tag";
+
 export interface Artist {
   externalUrls: {
     [key: string]: string,
@@ -14,6 +16,8 @@ export interface Artist {
   popularity: number,
   type: string,
   uri: string,
+  _id: string,
+  tags: Tag[]
 };
 
 interface Image {

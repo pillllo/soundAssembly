@@ -9,7 +9,7 @@ type ArtistListProps = {
 
 // function ArtistList(props) {
 function ArtistList({artistList, tags}: ArtistListProps) {
-  function renderArtists(list) {
+  function renderArtists(list: ArtistInt[]) {
     if (list.length > 0) {
       // when no tag filters are applied show all artists
       if (tags.every((tag) => tag.status === "inactive")) {
@@ -22,8 +22,8 @@ function ArtistList({artistList, tags}: ArtistListProps) {
           });
       } else {
         const filteredList = list.filter((artist) =>
-          artist.artistTags.some((artistTag) =>
-            props.tags
+          artist.tags.some((artistTag) =>
+            tags
               .filter((tag) => tag.status !== "inactive")
               .some((tag) => tag.name === artistTag.name)
           )
@@ -51,7 +51,7 @@ function ArtistList({artistList, tags}: ArtistListProps) {
   }
 
   // Render buffer to left-align items in last row (flexbox)
-  function renderBuffer(n) {
+  function renderBuffer(n: number) {
     if (artistList && artistList.length > 2) {
       const bufferList = [];
       for (let i = 0; i < n; i++) {

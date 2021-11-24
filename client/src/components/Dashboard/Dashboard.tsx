@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route } from "react-router-dom";
 import { Outlet } from 'react-router';
 
@@ -7,7 +7,7 @@ import ArtistPage from "../ArtistPage/ArtistPage";
 import Logout from '../Logout/Logout';
 import SideBar from '../SideBar/SideBar';
 import { getLibrary } from '../../ApiService';
-import UseAuth from '../UseAuth/UseAuth';
+// import UseAuth from '../UseAuth/UseAuth';
 
 import UserData from '../../@types/UserData';
 import Artist from '../../@types/Artist';
@@ -20,8 +20,9 @@ type DashboardProps = {
 function Dashboard ({ code }: DashboardProps) {
   // const accessToken = UseAuth(props.code)
 
-  const [artistList, setArtistList] = useState<Artist[] | null>([]);
-  const [tags, setTags] = useState<Tag[] | undefined>([]);
+  // const [artistList, setArtistList] = useState<Artist[] | null>([]);
+  const [artistList, setArtistList] = useState<Artist[]>([]);
+  const [tags, setTags] = useState<Tag[]>([]);
   const [username, setUsername] = useState("");
 
   useEffect(() => {
