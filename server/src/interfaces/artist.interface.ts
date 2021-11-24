@@ -7,7 +7,7 @@ export interface Artist {
   href: string,
   id: string,
   // TODO: fix type
-  images: [ [Object], [Object], [Object] ],
+  images: Image[],
   name: string,
   popularity: number,
   type: string,
@@ -17,4 +17,8 @@ export interface Artist {
 
 export interface Tag {
   name: string,
+}
+
+export interface Image {
+  url?: string,
 }
