@@ -1,7 +1,16 @@
+import * as React from 'react';
+
 import TagList from '../TagList/TagList';
 import logo from '../../assets/logoWhite.png';
 
-function SideBar(props) {
+import Tag from '../../@types/Tag';
+
+type SideBarProps = {
+  setTags: React.Dispatch<React.SetStateAction<Tag[]>>,
+  tags: Tag[],
+};
+
+function SideBar({ setTags, tags }: SideBarProps) {
 
   return (
     <div>
@@ -11,8 +20,8 @@ function SideBar(props) {
         </header>
         <div>
           <TagList
-            tags={props.tags}
-            setTags={props.setTags}
+            tags={tags}
+            setTags={setTags}
           />
         </div>
       </div>

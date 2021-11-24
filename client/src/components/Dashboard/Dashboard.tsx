@@ -20,11 +20,19 @@ type DashboardProps = {
 function Dashboard ({ code }: DashboardProps) {
   // const accessToken = UseAuth(props.code)
 
+  //----------------------------------------------------------------
+  // "METHODS"
+  //----------------------------------------------------------------
+
   const handleUpdateUserData = (userData: UserData): void => {
     setArtistList(userData.artists);
     setUsername(userData.username);
     setTags(userData.tags);
   }
+
+  //----------------------------------------------------------------
+  // STATE, CONTEXT etc
+  //----------------------------------------------------------------
 
   const [artistList, setArtistList] = useState<Artist[]>([]);
   const [tags, setTags] = useState<Tag[]>([]);
@@ -53,7 +61,10 @@ function Dashboard ({ code }: DashboardProps) {
   return (
     <div className="dashboard">
       <div className="dashboard__sidebar">
-        <SideBar setTags={setTags} tags={tags} />
+        <SideBar
+          setTags={setTags}
+          tags={tags}
+        />
       </div>
       <div className="dashboard__content">
         <TopBar
