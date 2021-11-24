@@ -12,7 +12,7 @@ import Album from '../../@types/Album';
 type ArtistPageProps = {
   tags: Tag[],
   setTags: React.Dispatch<React.SetStateAction<Tag[]>>,
-  artistList?: Artist[],
+  artistList: Artist[],
   setArtistList: React.Dispatch<React.SetStateAction<Artist[]>>,
 }
 
@@ -38,7 +38,7 @@ function ArtistPage({tags, setTags, artistList, setArtistList}: ArtistPageProps)
     <div className="artistPage">
       <div className="artistInfo-container">
         {artistInfo && <ArtistDetails artistInfo={artistInfo} />}
-        <ArtistTagList
+        {artistInfo && <ArtistTagList
           artistTags={artistTags}
           setArtistTags={setArtistTags}
           artistInfo={artistInfo}
@@ -48,6 +48,7 @@ function ArtistPage({tags, setTags, artistList, setArtistList}: ArtistPageProps)
           artistList={artistList}
           setArtistList={setArtistList}
         />
+        }
       </div>
       <AlbumList albumList={albumList}></AlbumList>
     </div>
