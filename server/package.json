@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "serve": "nodemon ./index.js",
+    "serve": "nodemon ./built/index.js",
     "dev": "ts-node-dev --respawn --pretty --transpile-only index.ts"
   },
   "author": "",

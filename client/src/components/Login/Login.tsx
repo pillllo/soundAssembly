@@ -1,8 +1,7 @@
+import * as React from 'react';
 import logo from '../../assets/logoBlack.png';
-require('dotenv').config();
 
-
-function Login() {
+function Login () {
 
   const params = new URLSearchParams({
     // client_id: process.env.CLIENT_ID,
