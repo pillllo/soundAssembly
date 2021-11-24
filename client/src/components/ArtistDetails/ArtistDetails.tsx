@@ -1,15 +1,21 @@
-function ArtistDetails(props) {
+import { Artist } from "../../@types/Artist";
+
+type ArtistDetailProps = {
+  artistInfo: Artist
+}
+
+function ArtistDetails({artistInfo}: ArtistDetailProps) {
 
   const noOfFollowers = function () {
     // format follower number with commas for thousands
-    if (props.artistInfo.followers) {
-      const followers = props.artistInfo.followers.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    if (artistInfo.followers) {
+      const followers = artistInfo.followers.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       return followers;
     }
   }
 
   const artistImage = function () {
-    return (props.artistInfo.images) ? props.artistInfo.images[0].url : "";
+    return (artistInfo.images) ? artistInfo.images[0].url : "";
   }
 
   return (
@@ -21,7 +27,7 @@ function ArtistDetails(props) {
           rgba(0, 0, 0, 0.6)
         ), url(${artistImage()})` }}
       >
-        <h2>{props.artistInfo.name}</h2>
+        <h2>{artistInfo.name}</h2>
         <div>Followers: {noOfFollowers()}</div>
       </div>
     </div>

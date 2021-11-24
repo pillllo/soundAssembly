@@ -6,7 +6,7 @@
 //   tags: taggedArtists.tags,
 // }
 
-import Artist from './Artist';
+import { Artist } from './Artist';
 import Tag from './Tag';
 
 interface UserData {

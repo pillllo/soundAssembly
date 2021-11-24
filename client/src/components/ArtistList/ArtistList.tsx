@@ -1,15 +1,14 @@
 import Tag from "../../@types/Tag.js";
-import { Artist as ArtistInt } from "../../@types/Artist.js";
+import { Artist as ArtistInterface } from "../../@types/Artist.js";
 import Artist from "../Artist/Artist.js";
 
 type ArtistListProps = {
-  artistList: ArtistInt[],
+  artistList: ArtistInterface[],
   tags: Tag[]
 }
 
-// function ArtistList(props) {
 function ArtistList({artistList, tags}: ArtistListProps) {
-  function renderArtists(list: ArtistInt[]) {
+  function renderArtists(list: ArtistInterface[]) {
     if (list.length > 0) {
       // when no tag filters are applied show all artists
       if (tags.every((tag) => tag.status === "inactive")) {

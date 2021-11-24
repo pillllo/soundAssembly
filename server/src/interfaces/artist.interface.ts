@@ -9,13 +9,13 @@ export interface Artist {
   genres: string[],
   href: string,
   id: string,
-  // TODO: fix type
   images: Image[],
   name: string,
   popularity: number,
   type: string,
   uri: string,
-  tags: Tag[]
+  tags: Tag[],
+  _id?: string
 }
 
 export interface Tag {

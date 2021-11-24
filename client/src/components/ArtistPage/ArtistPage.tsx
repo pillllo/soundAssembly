@@ -5,17 +5,28 @@ import AlbumList from '../AlbumList/AlbumList';
 import ArtistDetails from '../ArtistDetails/ArtistDetails';
 import ArtistTagList from '../ArtistTagList/ArtistTagList'
 import { getAlbums, getArtist } from '../../ApiService';
+import Tag from '../../@types/Tag';
+import { Artist } from '../../@types/Artist';
+import Album from '../../@types/Album';
 
-function ArtistPage(props) {
+type ArtistPageProps = {
+  tags: Tag[],
+  setTags: React.Dispatch<React.SetStateAction<Tag[]>>,
+  artistList: Artist[],
+  setArtistList: React.Dispatch<React.SetStateAction<Artist[]>>,
+}
 
-  const [albumList, setAlbumList] = useState([]);
-  const [artistInfo, setArtistInfo] = useState([]);
-  const [artistTags, setArtistTags] = useState([]);
+function ArtistPage({tags, setTags, artistList, setArtistList}: ArtistPageProps) {
+
+  const [albumList, setAlbumList] = useState<Album[]>([]);
+  const [artistInfo, setArtistInfo] = useState<Artist>(undefined);
+  const [artistTags, setArtistTags] = useState<Tag[]>([]);
 
   const {artistId} = useParams();
 
   useEffect(() => {
     getAlbums(artistId).then(albums => {
+      console.log(albums)
       setAlbumList([...albums.items])
     });
     getArtist(artistId).then(artist => {
@@ -33,10 +44,10 @@ function ArtistPage(props) {
           setArtistTags={setArtistTags}
           artistInfo={artistInfo}
           setArtistInfo={setArtistInfo}
-          tags={props.tags}
-          setTags={props.setTags}
-          artistList={props.artistList}
-          setArtistList={props.setArtistList}
+          tags={tags}
+          setTags={setTags}
+          artistList={artistList}
+          setArtistList={setArtistList}
         />
       </div>
       <AlbumList albumList={albumList}></AlbumList>
