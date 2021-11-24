@@ -12,21 +12,20 @@ import Album from '../../@types/Album';
 type ArtistPageProps = {
   tags: Tag[],
   setTags: React.Dispatch<React.SetStateAction<Tag[]>>,
-  artistList: Artist[],
+  artistList?: Artist[],
   setArtistList: React.Dispatch<React.SetStateAction<Artist[]>>,
 }
 
 function ArtistPage({tags, setTags, artistList, setArtistList}: ArtistPageProps) {
 
   const [albumList, setAlbumList] = useState<Album[]>([]);
-  const [artistInfo, setArtistInfo] = useState<Artist>(undefined);
+  const [artistInfo, setArtistInfo] = useState<Artist | null>(null);
   const [artistTags, setArtistTags] = useState<Tag[]>([]);
 
   const {artistId} = useParams();
 
   useEffect(() => {
     getAlbums(artistId).then(albums => {
-      console.log(albums)
       setAlbumList([...albums.items])
     });
     getArtist(artistId).then(artist => {
@@ -38,7 +37,7 @@ function ArtistPage({tags, setTags, artistList, setArtistList}: ArtistPageProps)
   return (
     <div className="artistPage">
       <div className="artistInfo-container">
-        <ArtistDetails artistInfo={artistInfo} />
+        {artistInfo && <ArtistDetails artistInfo={artistInfo} />}
         <ArtistTagList
           artistTags={artistTags}
           setArtistTags={setArtistTags}

@@ -63,17 +63,21 @@ function Dashboard({ code }: DashboardProps) {
             path="/"
             element={<ArtistList artistList={artistList} tags={tags} />}
           />
-          <Route
-            path="/artist/:artistId"
-            element={
-              <ArtistPage
-                tags={tags}
-                setTags={setTags}
-                artistList={artistList}
-                setArtistList={setArtistList}
-              />
-            }
-          />
+          {
+            artistList ?
+            <Route
+              path="/artist/:artistId"
+              element={
+                <ArtistPage
+                  tags={tags}
+                  setTags={setTags}
+                  artistList={artistList}
+                  setArtistList={setArtistList}
+                />
+              }
+            /> :
+            null
+          }
         </Routes>
         <Outlet></Outlet>
       </div>

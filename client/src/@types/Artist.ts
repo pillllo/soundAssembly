@@ -16,8 +16,8 @@ export interface Artist {
   popularity: number;
   type: string;
   uri: string;
-  _id: string;
   tags: Tag[];
+  _id: string;
 }
 
 export interface Image {
