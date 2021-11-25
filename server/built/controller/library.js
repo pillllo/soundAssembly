@@ -3,12 +3,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.importLibrary = exports.getLibrary = void 0;
 const axios_1 = __importDefault(require("axios"));
 const librarySchema_js_1 = __importDefault(require("../model/librarySchema.js"));
 require("dotenv").config();
 const { ACCESS_TOKEN, USERNAME } = process.env;
 // Fetch user's existing library from db
-exports.getLibrary = async (req, res) => {
+async function getLibrary(req, res) {
     try {
         const userLibrary = await librarySchema_js_1.default.find({ username: USERNAME });
         res.send(userLibrary);
@@ -17,9 +18,11 @@ exports.getLibrary = async (req, res) => {
         console.error(error);
         res.status(500);
     }
-};
+}
+exports.getLibrary = getLibrary;
+;
 // Fetch list of followed artists (library) from API and create an entry in the db
-exports.importLibrary = async (req, res) => {
+async function importLibrary(req, res) {
     try {
         // fetch followed artists for the specific account
         const artistsFetch = await fetchFromSpotifyApi("artists");
@@ -43,7 +46,9 @@ exports.importLibrary = async (req, res) => {
         console.error(error);
         res.status(500);
     }
-};
+}
+exports.importLibrary = importLibrary;
+;
 // Spotify API call to import followed artists or profile information
 function fetchFromSpotifyApi(dataType) {
     let spotifyApi = "";

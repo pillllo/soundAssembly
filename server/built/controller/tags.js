@@ -42,7 +42,7 @@ exports.tagArtist = async (req, res) => {
             "username": process.env.USERNAME
         }, {
             $push: {
-                "artists.$[i].artistTags": {
+                "artists.$[i].tags": {
                     name: name
                 }
             }
@@ -71,7 +71,7 @@ exports.untagArtist = async (req, res) => {
             "username": process.env.USERNAME
         }, {
             $pull: {
-                "artists.$[i].artistTags": {
+                "artists.$[i].tags": {
                     name: name
                 }
             }

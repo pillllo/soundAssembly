@@ -3,9 +3,8 @@ import router from './router';
 import cors from 'cors';
 
 // TODO: refactor use of db
-const db = require('./model/dbaccess.js');
-
 require('dotenv').config();
+const db = require('./model/dbaccess.js');
 
 const corsConfig = {origin: ['http://localhost:3000']};
 

@@ -2,8 +2,7 @@
 const SpotifyWebApi = require('spotify-web-api-node');
 require('dotenv').config();
 const redirect_uri = 'http://localhost:3000/';
-
-async function authorize (req, res) {
+exports.authorize = async (req, res) => {
     // TODO: #14 remove cons logs
     // console.log(req.body.code)
     const code = req.body.code;
@@ -26,7 +25,7 @@ async function authorize (req, res) {
     //     res.sendStatus(400)
     //   })
 };
-async function getToken (req, res) {
+exports.getToken = async (req, res) => {
     // try {
     // your application requests refresh and access tokens
     // after checking the state parameter
@@ -84,7 +83,7 @@ async function getToken (req, res) {
     //     res.status(500);
     // }
 };
-async function refreshToken (req, res) {
+exports.refreshToken = async (req, res) => {
     // try {
     //   // requesting access token from refresh token
     //   var refresh_token = req.query.refresh_token;
@@ -110,8 +109,4 @@ async function refreshToken (req, res) {
     //     res.status(500);
     // }
 };
-
-module.exports = {
-    authorize,
-    refreshToken
-}
+//# sourceMappingURL=authorization.js.map

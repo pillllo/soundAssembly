@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Outlet } from 'react-router';
+import { Outlet } from "react-router";
 
 import ArtistList from "../ArtistList/ArtistList";
 import ArtistPage from "../ArtistPage/ArtistPage";
@@ -9,15 +9,16 @@ import SideBar from '../SideBar/SideBar';
 import { getLibrary } from '../../ApiService';
 import UseAuth from '../UseAuth/UseAuth';
 
-import UserData from '../../@types/UserData';
-import Artist from '../../@types/Artist';
-import Tag from '../../@types/Tag';
+
+import UserData from "../../@types/UserData";
+import { Artist } from "../../@types/Artist";
+import Tag from "../../@types/Tag";
 
 type DashboardProps = {
   code: string;
-}
+};
 
-function Dashboard ({ code }: DashboardProps) {
+function Dashboard({ code }: DashboardProps) {
   // const accessToken = UseAuth(props.code)
 
   //----------------------------------------------------------------
@@ -47,7 +48,7 @@ function Dashboard ({ code }: DashboardProps) {
           setArtistList(userData.artists);
           setUsername(userData.username);
           if (userData.tags) {
-            userData.tags.forEach((tag: Tag) => tag.status = "inactive");
+            userData.tags.forEach((tag: Tag) => (tag.status = "inactive"));
             setTags(userData.tags);
           }
         }
@@ -55,7 +56,7 @@ function Dashboard ({ code }: DashboardProps) {
       .catch((err) => {
         // TODO: add
         console.log(err);
-      })
+      });
   }, [setArtistList, setUsername, setTags]);
 
   return (
@@ -74,24 +75,23 @@ function Dashboard ({ code }: DashboardProps) {
         <Routes>
           <Route
             path="/"
-            element={
-              <ArtistList
-                artistList={artistList}
-                tags={tags}
-              />
-            }
+            element={<ArtistList artistList={artistList} tags={tags} />}
           />
-          <Route
-            path="/artist/:artistId"
-            element={
-              <ArtistPage
-                tags={tags}
-                setTags={setTags}
-                artistList={artistList}
-                setArtistList={setArtistList}
-              />
-            }
-          />
+          {
+            artistList ?
+            <Route
+              path="/artist/:artistId"
+              element={
+                <ArtistPage
+                  tags={tags}
+                  setTags={setTags}
+                  artistList={artistList}
+                  setArtistList={setArtistList}
+                />
+              }
+            /> :
+            null
+          }
         </Routes>
         <Outlet></Outlet>
       </div>

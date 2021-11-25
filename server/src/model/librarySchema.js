@@ -29,7 +29,7 @@ const LibrarySchema = new Schema({
       popularity: Number,
       type: String,
       uri: String,
-      artistTags: [{
+      tags: [{
         name: String,
       }],
     },

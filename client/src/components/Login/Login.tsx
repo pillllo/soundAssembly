@@ -13,6 +13,10 @@ function Login () {
   const base_url = 'https://accounts.spotify.com/authorize?'
   const auth = base_url + params;
 
+  const handleLogin = () => {
+
+  }
+
   return (
     <div className="login">
       <div className="login-form">
@@ -31,6 +35,27 @@ function Login () {
       </div>
     </div>
   );
+
+// CODE USING SPOTIFY HREF
+
+  // return (
+  //   <div className="login">
+  //     <div className="login-form">
+  //       <div>
+  //         <img src={logo} alt="logo" />
+  //       </div>
+  //       <div>
+  //         <h3>Organize your music library</h3>
+  //       </div>
+  //       <div>
+  //         <p>Import your Spotify followed artists and organize them to your liking</p>
+  //       </div>
+  //       <div>
+  //         <button><a href={auth}>log in with spotify</a></button>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
 }
 
 export default Login;

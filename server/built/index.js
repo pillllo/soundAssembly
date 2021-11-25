@@ -7,8 +7,8 @@ const express_1 = __importDefault(require("express"));
 const router_1 = __importDefault(require("./router"));
 const cors_1 = __importDefault(require("cors"));
 // TODO: refactor use of db
-const db = require('./model/dbaccess.js');
 require('dotenv').config();
+const db = require('./model/dbaccess.js');
 const corsConfig = { origin: ['http://localhost:3000'] };
 const app = (0, express_1.default)();
 const PORT = process.env.PORT;

@@ -46,7 +46,7 @@ exports.tagArtist = async (req, res) => {
     },
     {
       $push: {
-        "artists.$[i].artistTags": {
+        "artists.$[i].tags": {
           name: name
         }
       }
@@ -78,7 +78,7 @@ exports.untagArtist = async (req, res) => {
     },
     {
       $pull: {
-        "artists.$[i].artistTags": {
+        "artists.$[i].tags": {
           name: name
         }
       }
