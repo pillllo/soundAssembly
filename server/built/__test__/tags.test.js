@@ -25,7 +25,7 @@ describe("Tags integration test", () => {
             artists: [
                 {
                     id: 0,
-                    artistTags: [{ name: "Indie" }, { name: "Rock" }],
+                    tags: [{ name: "Indie" }, { name: "Rock" }],
                     name: "Rick",
                     images: [
                         {
@@ -35,7 +35,7 @@ describe("Tags integration test", () => {
                 },
                 {
                     id: 1,
-                    artistTags: [{ name: "Indie" }],
+                    tags: [{ name: "Indie" }],
                     name: "Nick",
                     images: [
                         {
