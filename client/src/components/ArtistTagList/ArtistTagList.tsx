@@ -78,8 +78,7 @@ function ArtistTagList({
 
         // Create new tag in user tags if it doesn't exist yet
         if (tags.every((tag) => tag.name !== input.toLowerCase())) {
-          const newTag: Tag = { name: input, status: "inactive" };
-          const newTags = [...tags, newTag];
+          const newTags = [...tags, { name: input, status: "inactive" }];
           setTags(newTags);
           createTag(input);
         }
