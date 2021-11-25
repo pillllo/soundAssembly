@@ -16,7 +16,7 @@ const mockArtistList = [
   {
     _id: 1,
     id: 0,
-    artistTags: [{ name: "Indie" }, { name: "Rock" }],
+    tags: [{ name: "Indie" }, { name: "Rock" }],
     name: "Rick",
     images: [
       {
@@ -27,7 +27,7 @@ const mockArtistList = [
   {
     _id: 1,
     id: 1,
-    artistTags: [{ name: "Indie" }],
+    tags: [{ name: "Indie" }],
     name: "Nick",
     images: [
       {
@@ -38,7 +38,7 @@ const mockArtistList = [
   {
     _id: 2,
     id: 2,
-    artistTags: [],
+    tags: [],
     name: "Sammy",
     images: [
       {

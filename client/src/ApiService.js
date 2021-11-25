@@ -86,7 +86,7 @@ function untagArtist(artistId, tagName) {
 // Requests directly to Spotify API
 // TODO: #19 move all Spotify API calls to server?
 
-const access_token = "BQBAYpMwp_IAy___y9ecriNY_ggY7tMuprfhzoTuFaWbhNATIGNm9Mm3KJ7BqYHwpsbCxkLguzcUvrt7FiFezf-BJp-HVU6l46T6oaWnwMLZx1JDegVjQQL2RqRZfXqJeQvvIWW7kFR5PG66Sy4MD0oZXOOSDh4";
+const access_token = "BQAl9lx-mVKAlEzOcEKLR_qqTH3Srfa1O53zWkcJFihjODmdtkvi9qZ4B19rIml-GBWp6JZ6EuRt872lqFXNR6n2E4REDAyFUPE_cQb26bxbBAyHBGf57IjMydYcXo7oFLVvzim__-3c1_RLKSK7SCTaYbLPNHs";
 
 // Used: ArtistPage component
 async function getAlbums(artistId, req, res) {

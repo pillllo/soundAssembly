@@ -1,6 +1,5 @@
 type Tag = {
   name: string;
-  // status?: ('active' | 'inactive');
   status?: string;
 }
 

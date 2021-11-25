@@ -30,7 +30,7 @@ function ArtistPage({tags, setTags, artistList, setArtistList}: ArtistPageProps)
     });
     getArtist(artistId).then(artist => {
       setArtistInfo(artist)
-      setArtistTags(artist.artistTags)
+      setArtistTags(artist.tags)
     })
   },[artistId])
 

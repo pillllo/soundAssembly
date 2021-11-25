@@ -10,7 +10,7 @@ function ArtistTag(props) {
     untagArtist(props.artistInfo.id, props.tag.name)
 
     const artistInfoCopy = JSON.parse(JSON.stringify(props.artistInfo))
-    artistInfoCopy.artistTags = newList;
+    artistInfoCopy.tags = newList;
     props.setArtistInfo(artistInfoCopy);
 
     const artistListCopy = JSON.parse(JSON.stringify(props.artistList));
