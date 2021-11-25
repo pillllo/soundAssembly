@@ -1,3 +1,4 @@
+"use strict";
 const { Router } = require('express');
 const { getFollowedArtists, getArtist } = require('./controller/artists');
 const { authorize, refreshToken } = require('./controller/authorization');

@@ -1,3 +1,4 @@
+"use strict";
 // require('dotenv').config();
 const mongoose = require('mongoose');
 const { DB_URL, DB_NAME } = process.env;

@@ -5,13 +5,13 @@ import { Artist, Tag } from "../interfaces/artist.interface";
 
 require("dotenv").config();
 
-const access_token = process.env.ACCESS_TOKEN;
+const { ACCESS_TOKEN, USERNAME } = process.env;
 
 // Fetch user's existing library from db
 
 exports.getLibrary = async (req: Request, res: Response) => {
   try {
-    const userLibrary = await Library.find({ username: "natpil" });
+    const userLibrary = await Library.find({ username: USERNAME });
     res.send(userLibrary);
   } catch (error) {
     console.error(error);
@@ -41,7 +41,6 @@ exports.importLibrary = async (req: Request, res: Response) => {
       tags: userTags,
       artists: artistsWithTags,
     });
-
     res.send(userLibrary);
   } catch (error) {
     console.error(error);
@@ -66,7 +65,7 @@ function fetchFromSpotifyApi(dataType: string) {
   const response = axios(spotifyApi, {
     method: "get",
     headers: {
-      Authorization: "Bearer " + access_token,
+      Authorization: "Bearer " + ACCESS_TOKEN,
     },
   });
   return response;

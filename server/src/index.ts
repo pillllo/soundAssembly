@@ -15,6 +15,10 @@ const PORT = process.env.PORT;
 app
 	.use(cors(corsConfig))
 	.use(Express.json())
+	.use((req, res, next) => {
+		console.log(`${req.method} request received for URL: ${req.url}`);
+		next();
+	})
 	.use(router)
 
 app.listen(PORT, () => {

@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "serve": "nodemon ./built/index.js",
-    "dev": "ts-node-dev --respawn --pretty --transpile-only index.ts"
+    "dev": "ts-node-dev --respawn --pretty --transpile-only ./src/index.ts",
+    "build": "tsc",
+    "serve": "nodemon ./built/index.js"
   },
   "author": "",
   "license": "ISC",
