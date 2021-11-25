@@ -1,27 +1,35 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
+
+import TagListItem from '../TagListItem/TagListItem';
 import { createTag } from "../../ApiService";
-import Tag from "../Tag/Tag";
 
-function TagList(props) {
+import Tag from '../../@types/Tag';
 
-  const [newTag, setNewTag] = useState('');
+type TagListProps = {
+  setTags: React.Dispatch<React.SetStateAction<Tag[]>>,
+  tags: Tag[],
+};
 
-  function handleInputChange (e) {
-    const val = e.target.value;
-    setNewTag(val);
+function TagList({ setTags, tags }: TagListProps) {
+
+  const [newTagName, setNewTagName] = useState('');
+
+  function handleInputChange (event: ChangeEvent<HTMLInputElement>) {
+    const val = event.currentTarget.value;
+    setNewTagName(val);
   }
 
-  async function handleSubmit (e) {
-      e.preventDefault();
+  async function handleSubmit (event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
       try {
-        const updatedTags = await createTag(newTag);
-        const newList = [...props.tags, { name: newTag, status: "inactive" }];
-        props.setTags(newList);
+        const updatedTags = await createTag(newTagName);
+        const newTag: Tag = { name: newTagName, status: "inactive" };
+        const newList = [...tags, newTag ];
+        setTags(newList);
       } catch (err) {
         console.error(err);
       }
-      setNewTag('');
-      e.target.value = "";
+      setNewTagName('');
   }
 
   // async function submitTag(event) {
@@ -37,7 +45,7 @@ function TagList(props) {
 
   // RENDER TAGS
 
-  const renderTags = (tags) => {
+  const renderTags = (tags: Tag[]) => {
     if (tags && tags.length > 0) {
       return tags
         .sort(function (a, b) {
@@ -45,11 +53,11 @@ function TagList(props) {
         })
         .map((tag, idx) => {
           return (
-            <Tag
+            <TagListItem
               tag={tag}
               key={`tag-${idx}`}
-              tags={props.tags}
-              setTags={props.setTags}
+              tags={tags}
+              setTags={setTags}
             />
           );
         });
@@ -66,16 +74,16 @@ function TagList(props) {
         data-testid="taglist"
       >
         {
-          renderTags(props.tags)
+          renderTags(tags)
         }
-        <form id="taglist-form" onSubmit={ (e) => handleSubmit(e) }>
+        <form id="taglist-form" onSubmit={handleSubmit}>
           <input
             data-testid="taglist-input"
             onChange={(e) => handleInputChange(e) }
             placeholder="add tag..."
             type="text"
             />
-          <button onClick={ (e) => handleSubmit(e) }>Submit tag</button>
+          <button type="submit">Submit tag</button>
         </form>
         {/* <input type="text" onKeyUp={submitTag} placeholder="add tag..." /> */}
       </div>

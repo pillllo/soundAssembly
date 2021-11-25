@@ -1,4 +1,4 @@
-function Tag(props) {
+function TagListItem(props) {
 
   function toggleTag() {
     const newArray = props.tags.map(tag => {
@@ -37,4 +37,4 @@ function Tag(props) {
   );
 }
 
-export default Tag;
+export default TagListItem;
