@@ -1,7 +1,6 @@
 type Tag = {
   name: string;
-  // status?: ('active' | 'inactive' | undefined);
-  status?: string;
+  status?: ('active' | 'inactive');
 }
 
 export default Tag;
