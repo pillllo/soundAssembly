@@ -1,6 +1,6 @@
 type Tag = {
   name: string;
-  status?: ('active' | 'inactive');
+  status?: 'active' | 'inactive';
 }
 
 export default Tag;
