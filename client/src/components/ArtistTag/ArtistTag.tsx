@@ -24,12 +24,13 @@ function ArtistTag({
 }: ArtistTagProps) {
   function removeTag() {
     // Remove tag from artist in DB
+    console.log(artistInfo.id, tag.name)
     untagArtist(artistInfo.id, tag.name);
 
     // Remove tag from list of artistTags
     const artistTagsCopy = JSON.parse(JSON.stringify(artistTags));
     const newArtistTags = artistTagsCopy.filter(
-      (oldTag: Tag) => oldTag.name !== tag.name
+      (currentTag: Tag) => currentTag.name !== tag.name
     );
     // const newArtistTags = artistTags
     //   .map(tag => {return {...tag}})
