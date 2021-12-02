@@ -9,7 +9,7 @@ const { ACCESS_TOKEN, USERNAME } = process.env;
 
 // Fetch user's existing library from db
 
-export async function getLibrary (req: Request, res: Response) {
+export async function getLibrary(req: Request, res: Response) {
   try {
     const userLibrary = await Library.find({ username: USERNAME });
     res.send(userLibrary);
@@ -17,11 +17,11 @@ export async function getLibrary (req: Request, res: Response) {
     console.error(error);
     res.status(500);
   }
-};
+}
 
 // Fetch list of followed artists (library) from API and create an entry in the db
 
-export async function importLibrary (req: Request, res: Response) {
+export async function importLibrary(req: Request, res: Response) {
   try {
     // fetch followed artists for the specific account
     const artistsFetch = await fetchFromSpotifyApi("artists");
@@ -46,7 +46,7 @@ export async function importLibrary (req: Request, res: Response) {
     console.error(error);
     res.status(500);
   }
-};
+}
 
 // Spotify API call to import followed artists or profile information
 
@@ -70,7 +70,6 @@ function fetchFromSpotifyApi(dataType: string) {
   });
   return response;
 }
-
 
 // Helper functions to poulate tags
 

@@ -18,7 +18,6 @@ exports.getTags = async (req, res) => {
 
 exports.createTag = async (req, res) => {
   try {
-    // TODO: #12 rename 'name' to tag for readbility
     const tag = req.body;
     // TODO: remove hardcoded username see #8
     const { tags: updatedTags } = await Library.findOneAndUpdate({username: 'natpil'}, {
@@ -39,7 +38,7 @@ exports.createTag = async (req, res) => {
 exports.tagArtist = async (req, res) => {
   try {
     const id = req.params.artistId;
-    // TODO: #13 rename 'name' to tag for readability
+    // name of the tag sent through the API request
     const {name} = req.body;
     const tag = await Library.updateOne({
       "username": process.env.USERNAME
@@ -58,6 +57,11 @@ exports.tagArtist = async (req, res) => {
         }
       ]
     });
+    const updatedLibrary = await Library.findOne({
+      "username": process.env.USERNAME
+    })
+    console.log('server tag', tag)
+    console.log('server library', updatedLibrary)
     res.send(tag);
     res.status(204);
   } catch (error) {

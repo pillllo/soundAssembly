@@ -56,8 +56,11 @@ function ArtistTagList({
         alert("The tag already exists on this artist.");
       } else {
         const newArtistTags = [...artistInfo.tags, { name: input }];
-        // Update DB and update artist tag list
+
+        // Update DB: add tag to artist in Library saved in DB
         tagArtist(artistInfo.id, input);
+
+        // Update artist tag list with new tag
         setArtistTags(newArtistTags);
 
         // Update artist info with new tag list
@@ -109,9 +112,9 @@ function ArtistTagList({
                 tag={tag}
                 key={tag.name}
                 artistTags={artistTags}
+                setArtistTags={setArtistTags}
                 artistInfo={artistInfo}
                 setArtistInfo={setArtistInfo}
-                setArtistTags={setArtistTags}
                 artistList={artistList}
                 setArtistList={setArtistList}
               />
