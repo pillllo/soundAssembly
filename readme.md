@@ -1,5 +1,3 @@
-# Sound Assembly
-
 <p>
 <img src="soundAssembly_image.png" />
 </p>
