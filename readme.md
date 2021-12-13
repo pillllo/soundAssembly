@@ -1,5 +1,5 @@
 <p>
-<img src="soundAssembly_image.png" />
+<img src="images/soundAssembly_image.png" />
 </p>
 
 Sound Assembly is an app for Spotify users which allows you to tag your followed artists and organise your music collection.
